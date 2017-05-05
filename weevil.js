@@ -5,7 +5,7 @@ function emitterFor (scope) {
 
     var onMessage = function (message) {
         var cbs;
-        message = JSON.parse(message.data);
+        message = message.data;
 
         if (!message.weevil) return;
 
@@ -50,11 +50,11 @@ function emitterFor (scope) {
         emit: function (name /*, [args...] */) {
             var args = Array.prototype.slice.call(arguments);
 
-            scope.postMessage(JSON.stringify({
+            scope.postMessage({
                 name: args.shift(),
                 args: args,
                 weevil: true
-            }));
+            });
 
             return this;
         },
